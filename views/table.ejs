@@ -22,16 +22,18 @@
                     </tr>
                     
                     
-                    <% docs.map(function(doc){ %>
+                    <% company.map(function(companys){ %>
                     <tr>
-                    <td><%= doc.companyName %></td>
-                    <td><%= doc.address %></td>
-                    <td><%= doc.location %></td>
-                    <td><%= doc.clastname %></td>
-                    <td><%= doc.website %></td> 
-                    <td><%= doc.cemail %></td>
-                    <td><%= doc.cdescription %></td>
-                    <td><a href="/table/edit/<%= doc._id %>">Edit</a><br> <a href="/table/delete/<%= doc._id %>">Delete</a></td>
+                    <td><%= companys.company_name %></td>
+                    <td><%= companys.address %></td>
+                    <td><%= companys.location %></td>
+                    <td><%= companys.clastname %></td>
+                    <td><%= companys.website %></td>
+                    <td><%= companys.cemail %></td>
+                    <td><%= companys.cdescription %></td>
+                    <td><a href="/table/edit/<%= companys._id %>">Edit</a>
+                         <a href="/table/delete/<%= companys.id %>">Delete</a></td>
+                    
                     </tr>
         
                     <% }); %>

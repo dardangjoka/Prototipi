@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const path= require('path');
 const bodyParser=require('body-parser');
-const objectId= require('mongodb').ObjectId;
-
+const mongoose = require('mongoose');
+const Company = require('./models/Company.js');
 //setting up template engine
 
 app.set('views',path.join(__dirname,'views'));
@@ -16,21 +16,13 @@ app.use(express.static(__dirname+'/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const MongoClient = require('mongodb').MongoClient;
-const mongoURL = 'mongodb://localhost:27017/Finale';
-
-MongoClient.connect(mongoURL, function(err, db)
-{
-	if (err){
-		console.log(err);
-	}
-	else {
-	
-	console.log("Connected Succsesfully to MongoDB")
-	}
-	 prototipi=db.collection('prototipi');
-	
-});
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/Proto', {useMongoClient: true})
+  .then(function() {
+     console.log('Successfully connected to MongoDB!')
+  }).catch(function(err) {
+     console.error(err)
+  });
 
 app.get('/', (req, res)=>
 {
@@ -38,66 +30,77 @@ app.get('/', (req, res)=>
 });
 
 app.get('/table',(req,res)=>{
-   prototipi.find({}).toArray(function (err, docs){
+  /*prototipi.find({}).toArray(function (err, docs){
 		if (err){
 			console.log(err);
         }
         else{
         res.render('table', {docs: docs});
         }
-	});
+    });
+    
+ */
+
+    Company.find(function(err, company) {
+        if (err) { console.log(err); }
+        res.render('table',{company:company});
+        
+      });
     
 });
 
 app.post('/table/add', (req,res)=>{
-  prototipi.insertOne({companyName: req.body.cname , address: req.body.address,
-  location: req.body.location, clastname: req.body.clastname, website: req.body.website,
-  cemail: req.body.cemail, cpswd: req.body.cpswd, cdescription: req.body.cdescription },(err, result)=>{
-    if (err) {
-        console.log(err);
-    }
-    else{
-    res.redirect('/');
-   }
+ 
+  var company = new Company();
+  company.company_name = req.body.cname;
+  company.address = req.body.address;
+  company.location = req.body.location;
+  company.clastname= req.body.clastname;
+  company.website= req.body.website;
+  company.cemail= req.body.cemail;
+  company.cpswd=req.body.cpswd;
+  company.cdescription= req.body.cdescription;
+  Company.create(company, function(err, company) {
+    if (err) { console.log(err); }
+      res.redirect('/');
+    //res.json(company);
+    
   });
 });
-
+ 
 app.get('/table/edit/:id', (req,res)=>{
-    var id = objectId(req.params.id);
-	prototipi.findOne({_id: id}, function(err, doc){
-		if (err) {
-			console.log(err);
-		}
-		res.render('edit', {doc: doc});	
-	
-	});
-
+    Company.findById(req.params.id, function(err, company){
+        if(err) { console.log(err); }
+        res.render('edit',{company:company});
+      });
 });
 
 app.get('/table/delete/:id', function(req, res) {
-	var id = objectId(req.params.id);
-	prototipi.deleteOne({_id: id}, function(err, result){
-		if (err) {
-			console.log(err);
-		} else {
-		res.redirect('/table');
-		}
-	});
+
+    Company.remove({_id: req.params.id}, function(err, result){
+        if (err) { console.log(err); }
+        res.redirect('/table');
+      });
+
 });
 
 app.post('/table/update/:id', (req,res)=>{
-    var id= objectId(req.params.id);
-    prototipi.updateOne({_id: id}, {$set:{companyName: req.body.cname , address: req.body.address,
-        location: req.body.location, clastname: req.body.clastname, website: req.body.website,
-        cemail: req.body.cemail, cpswd: req.body.cpswd, cdescription: req.body.cdescription }},function(err, result){
-        if(err)
-        {
-            console.log(err);
-        }
+   
 
-        res.redirect('/table');
-    });
-
+    var updatedCompany = {
+        company_name: req.body.cname,
+        address: req.body.address,
+        location: req.body.location,
+        clastname: req.body.clastname,
+        website: req.body.website,
+        cemail: req.body.cemail,
+        cpswd: req.body.cpswd,
+        cdescription: req.body.cdescription
+     }
+     Company.findOneAndUpdate({_id: req.params.id}, updatedCompany, {new: true}, function(err, Company){
+       if (err) { console.log(err); }
+       res.redirect('/table');
+     });
 });
 
 

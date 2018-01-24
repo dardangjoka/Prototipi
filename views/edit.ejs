@@ -2,32 +2,32 @@
 
 
      
-            <form method="POST" action="/table/update/<%= doc._id %>">
+            <form method="POST" action="/table/update/<%= company._id %>">
 				
 				
                 <label for="comname"> Company Name:</label>
-                <input type="text" name="cname" value="<%= doc.companyName %>">
+                <input type="text" name="cname" value="<%= company.company_name %>">
                  <br><br>
                 <label for="Address">Address:</label>
-                <input type="text" name="address"  value="<%= doc.address %>">
+                <input type="text" name="address"  value="<%= company.address %>">
                 <br><br><br>
                 <label for="clastname">Last Name:</label>
-                <input type="text" name="clastname"  value="<%= doc.clastname %>">
+                <input type="text" name="clastname"  value="<%= company.clastname %>">
                 <br><br><br>
                 <label for="website">Web site:</label>
-                <input type="text" name="website" value="<%= doc.website %>" >
+                <input type="text" name="website" value="<%= company.website %>" >
                 <br><br><br>
                 Location:
-                <input type="text" name="location" value="<%= doc.location %>" >
+                <input type="text" name="location" value="<%= company.location %>" >
                 <br><br><br>
                 <label for="cemail">Company email:</label>
-                <input type="email" name="cemail" value="<%= doc.cemail %>" >
+                <input type="email" name="cemail" value="<%= company.cemail %>" >
                 <br><br><br>
                 <label for="cpswd">Password:</label>
-                <input type="password" id="cpswd" name="cpswd" value="<%= doc.cpswd %>">
+                <input type="password" id="cpswd" name="cpswd" value="<%= company.cpswd %>">
                 <br><br><br>
                 <label for="cdescription"> Company Description:</label>
-                <textarea name="cdescription"   > <%= doc.cdescription %></textarea>
+                <textarea name="cdescription"   > <%= company.cdescription %></textarea>
                 <br><br><br>
 				
 				<br><button type="submit" class="btn">Update</button>
