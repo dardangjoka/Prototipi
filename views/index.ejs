@@ -1,0 +1,120 @@
+<% include partials/header %>
+
+
+
+
+
+         
+<div class="container">
+    <div class="row">
+            <div class="col-lg-12"  id="header1">
+                    <h1>Registering form</h1>
+            </div>
+    
+    </div>
+    <div class="row">
+            <div id="AT" class="col-md-4">
+
+            </div>
+            <div id="login" class="col-md-4">
+                    <form id="login">
+                     <h4>Account type:</h4> 
+                    <label class="radio-inline">Company <input onclick="javascript:CheckForCompany();" type="radio" id="company" name="AT" checked></label>
+                   <label class="radio-inline">Employment <input onclick="javascript:CheckForCompany();" type="radio" name="AT"  id="employe" ></label>
+           </form>
+
+
+            </div>
+            <div id="blank" class="col-md-4">
+
+            </div>
+            
+    </div>
+    <div id="form1">
+    <div class="row"  >
+              <div class="col-md-4 col-sm-3" id="form1"></div>          
+              <div class="col-md-4 col-sm-6 " id="form1">
+                    <div id="enkapsulimi">
+                            <form action="/table/add" method="POST" class="form-group" >
+                                    <label for="cname"> Company Name:</label>
+                                    <input type="text" name="cname" class="form-control" placeholder="Company Name" id="comname">
+                                    <label for="Address">Address:</label>
+                                    <input type="text" name="address" class="form-control" placeholder="Address" id="Address">
+                                    <label for="sel1">Location:</label>
+                                    <select  name="location" class="form-control" id="location">
+                                    <option>Prishtine</option>
+                                    <option>Drenas</option>
+                                    <option>Fushe-Kosove</option>
+                                    <option>Peje</option>
+                                    <option>Gjakove</option>
+                                    </select>
+                                    <label for="clastname">Last Name:</label>
+                                    <input type="text" name="clastname"  class="form-control" placeholder="Last Name" id="lastname1">
+                                    <label for="website">Web site:</label>
+                                    <input type="text" name="website" id="Website" placeholder="https://www." class="form-control">
+                                    
+                                    <label for="cemail">Company email:</label>
+                                    <input type="email" name="cemail" id="cemail" placeholder="username@server.com" class="form-control">
+                                    <label for="cpswd">Password:</label>
+                                    <input type="password" id="cpswd" name="cpswd" placeholder="Password" class="form-control">
+                                    <label for="cdescription"> Company Description:</label>
+                                    <textarea name="cdescription" id="cdescription"  class="form-control"></textarea>
+                                    
+                                     <br>
+                                    <input type="submit" name="submit" class="btn btn-primary btn-block" value="submit">
+
+                            </form>
+                    </div>
+
+                  
+
+            </div>
+    
+    </div>
+   </div>
+    <div  id="form2" style="display:none">
+    <div class="row"  >
+                   <div class="col-md-4 col-sm-3" >
+
+                   </div>          
+                   <div class="col-md-4 col-sm-6 " >
+                         <div id="enkapsulimi" >
+                                 <form action="/table/addUsr" method="POST" class="form-group">
+                                         <label for="username"> Username1:</label>
+                                         <input type="text" class="form-control" placeholder="Username" id="username">
+                                         <label for="firstname">First Name:</label>
+                                         <input type="text" name="FN" class="form-control" placeholder="First Name" id="firstname">
+                                         <label for="lastname">Last Name:</label>
+                                         <input type="text" name="LN"  class="form-control" placeholder="Last Name" id="lastname">
+                                         <br>Gender: 
+                                         <label class="radio-inline"><input type="radio" name="optradio">Male</label>
+                                         <label class="radio-inline"><input type="radio" name="optradio">Female</label>
+                                         <label class="radio-inline"><input type="radio" name="optradio">Other</label>
+
+                                        <br> <label for="birthday">Birth date:</label> 
+                                         <input type="date" placeholder="dd/mm/yyyy" id="birthday" name="birthday" class="form-control">
+                                         <label for="email">email:</label>
+                                         <input type="email" name="email" id="email" placeholder="email" class="form-control">
+                                         <label for="pswd">Password:</label>
+                                         <input type="password" id="pswd" name="password" placeholder="Password" class="form-control">
+                                         <label for="interested">Interested Fields</label>
+                                         <input type="text" name="interested" id="interested" placeholder="Interested Fields" class="form-control">
+                                          <br>
+                                         <input type="submit" name="submit" class="btn btn-primary btn-block" value="submit">
+
+                                 </form>
+                         </div>
+
+                       
+
+                 </div>
+         
+         </div>
+   </div>
+</div>   
+
+
+
+
+
+<% include partials/footer %>

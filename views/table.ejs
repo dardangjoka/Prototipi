@@ -1,0 +1,50 @@
+<% include partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+<div class="col-md-10"><h4>Table of Comany users</h4></div>
+</div>
+<div class="row">
+
+    <div class="table">
+            <table>
+			
+                    <tr>
+                    
+                    <td>Company name:</td>
+                    <td>Address</td>
+                    <td>Location</td>
+                    <td>Last Name:</td>
+                    <td>WEB-Site:</td>
+                    <td>e-mail:</td>
+                    <td>Description:</td>
+                    <td> crud</td>
+                    </tr>
+                    
+                    
+                    <% docs.map(function(doc){ %>
+                    <tr>
+                    <td><%= doc.companyName %></td>
+                    <td><%= doc.address %></td>
+                    <td><%= doc.location %></td>
+                    <td><%= doc.clastname %></td>
+                    <td><%= doc.website %></td> 
+                    <td><%= doc.cemail %></td>
+                    <td><%= doc.cdescription %></td>
+                    <td><a href="/table/edit/<%= doc._id %>">Edit</a><br> <a href="/table/delete/<%= doc._id %>">Delete</a></td>
+                    </tr>
+        
+                    <% }); %>
+                    
+                    
+            </table>
+            
+            
+            
+
+    </div>
+</div>
+</div>
+
+
+<% include partials/footer %>

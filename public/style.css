@@ -1,0 +1,30 @@
+#header1{
+    margin-top: 2px;
+    padding: 10px;
+    background-color: rgb(67, 114, 75);
+    text-align: center;
+}
+body{
+    background-color: #ffffff;
+}
+#blank
+{
+    min-height: 50px;
+    text-align: center;
+}
+ 
+#login {
+    text-align: center;
+    margin-top: 10px;
+  
+    width: 320px;
+  }
+  #login form input[type="radio"] {
+    margin: auto;
+    padding: 22px 22px 22px 22px;
+    width: 100%;
+    border-radius: 5px;
+    background: #282e33;
+    border-top: 3px solid #434a52;
+    border-bottom: 3px solid #434a52;
+  }
